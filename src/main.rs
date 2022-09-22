@@ -97,8 +97,11 @@ impl Component for CounterComponent{
                         None => {self.res=String::from("Invalid input"); return true}
                     }
                 }
-                if self.to_base != 10{
-                    self.res = from_decimal(dec, self.to_base).to_string();
+                if self.to_base != 10 {
+                    match self.practice_mode {
+                        false => self.res = from_decimal(dec, self.to_base).to_string(),
+                        true => self.practice_ans = from_decimal(dec, self.to_base).to_string()
+                    }
                     return true
                 }
                 if self.practice_mode{
